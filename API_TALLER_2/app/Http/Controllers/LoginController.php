@@ -43,4 +43,20 @@ class LoginController extends Controller
         // Autenticación exitosa, retornar el token
         return response()->json(compact('token'), 200);
     }
+
+    public function logout()
+    {
+        try {
+            // Invalidar el token actual del usuario
+            JWTAuth::invalidate(JWTAuth::parseToken());
+
+            return response()->json([
+                'message' => 'Logout exitoso.'
+            ], 200);
+        } catch (JWTException $e) {
+            return response()->json([
+                'error' => 'Error del servidor al intentar cerrar sesión.'
+            ], 500);
+        }
+    }
 }
