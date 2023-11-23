@@ -16,11 +16,10 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->firstName,
-            'last_name1' => $this->faker->lastName,
-            'last_name2' => $this->faker->lastName,
+            'lastname' => $this->faker->lastName,
             'id_number' => $this->faker->unique()->numberBetween(12343459, 999999999),
-            'email' => $this->faker->safeEmail,
-            'point_earned' => $this->faker->numberBetween(0, 999999),
+            'email' => $this->faker->unique()->safeEmail,
+            'points_earned' => $this->faker->numberBetween(0, 999999),
         ];
     }
 }
