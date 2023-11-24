@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+//Login Route
 Route::post('/login',[LoginController::class,'login']);
 
 //Protected Routes

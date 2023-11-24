@@ -8,13 +8,21 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    //
+    /**
+     * Get all users data
+     * @return users
+     */
     public function index()
     {
         $users = User::all();
         return response()->json(['users' => $users],200);
     }
 
+    /**
+     * Store a new user, checking all fields
+     * @param request
+     * @return response
+     */
     public function store(Request $request){
         try{
             DB::beginTransaction();
@@ -56,6 +64,12 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Update a user data by id.
+     * @param request
+     * @param user
+     * @return response
+     */
     public function update(Request $request, User $user){
         try{
             DB::beginTransaction();
@@ -92,6 +106,11 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Delete a user from database.
+     * @param user
+     * @return response
+     */
     public function destroy(User $user)
     {
         try{

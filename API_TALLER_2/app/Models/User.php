@@ -10,6 +10,9 @@ class User extends Model
 {
     use HasFactory;
 
+    /**
+     * User editable fields
+     */
     protected $fillable = [
         'name',
         'lastname',

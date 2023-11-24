@@ -12,6 +12,10 @@ class UserFactory extends Factory
 {
     protected $model = User::class;
 
+    /**
+     * Create users fake data
+     * @return data
+     */
     public function definition()
     {
         return [

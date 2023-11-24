@@ -9,7 +9,11 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 
 class LoginController extends Controller
 {
-    //
+    /**
+     * Create a Admin token, checking credentials
+     * @param request
+     * @return response
+     */
     public function login(Request $request){
 
         $customMessages = [
@@ -44,6 +48,10 @@ class LoginController extends Controller
         return response()->json(compact('token'), 200);
     }
 
+    /**
+     * Delete Admin token
+     * @return resposne
+     */
     public function logout()
     {
         try {
