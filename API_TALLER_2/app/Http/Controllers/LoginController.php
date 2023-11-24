@@ -31,7 +31,7 @@ class LoginController extends Controller
         // Intentar autenticar al usuario
             if (!$token = JWTAuth::attempt($request->only('username', 'password'))) {
                 return response()->json([
-                    'error' => 'Credenciales incorrectas, intentalo denuevo.'
+                    'error' => ['credentials' => 'Credenciales incorrectas, intentalo denuevo.']
                 ], 401);
             }
         }catch (JWTException $e){

@@ -1,85 +1,72 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { ref, onMounted} from 'vue';
+import { RouterView } from 'vue-router'
+import LoginModal from './components/LoginModal.vue';
+import AddModal from './components/AddModal.vue';
+import {logout} from '@/backend/crud'
+
+const showLoginModal = ref(false);
+const showAddModal = ref(false);
+const tokenExist = ref(false);
+
+function openLoginModal() {
+  showLoginModal.value = true;
+}
+function openAddModal() {
+  showAddModal.value = true;
+}
+
+onMounted(async () => {
+  if(localStorage.getItem('token') == null){
+    showLoginModal.value = true;
+  }
+  else{
+    showLoginModal.value = false;
+    tokenExist.value = true;
+  }
+
+});
+
+async function logoutAdmin() {
+  try {
+    if(localStorage.getItem('token') != null){
+      await logout();
+      localStorage.removeItem('token');
+      window.location.reload();
+    }
+  } catch (error: any) {
+    console.log('Hubo un error', error.response.data);
+  }
+
+}
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <div>
+    <LoginModal v-if="showLoginModal" @close="showLoginModal = false"></LoginModal>
+    <AddModal v-if="showAddModal" @close="showAddModal = false"></AddModal>
+    <header>
+      <div>
+        <nav class="bg-gray-900">
+          <div class="max-w-full flex flex-wrap items-center justify-between mx-auto p-4">
+            <button @click="openAddModal" v-if="tokenExist" class="font-bold text-white p-2 rounded-lg text-sm sm:text-base bg-green-600 hover:bg-green-500">
+              AGREGAR USUARIO
+            </button>
+            <div v-if="tokenExist" class="block w-auto" id="navbar-default">           
+              <button @click="logoutAdmin" class="flex items-center space-x-3 text-sm sm:text-base text-gray-200 hover:text-white">
+                Cerrar Sesión
+              </button>
+            </div>
+            <button v-if="!tokenExist" @click="openLoginModal" class="font-bold text-white p-2 rounded-lg text-sm sm:text-base bg-green-600 hover:bg-green-500">
+              Inicia Sesión
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <RouterView v-if="tokenExist"/>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>

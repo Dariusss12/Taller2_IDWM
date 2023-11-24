@@ -12,7 +12,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return response()->json($users,200);
+        return response()->json(['users' => $users],200);
     }
 
     public function store(Request $request){
@@ -21,15 +21,14 @@ class UserController extends Controller
             $fields=$request->validate([
                 'name' => 'required',
                 'lastname' => 'required',
-                'id_number' => 'required|numeric|unique:users,id_number',
+                'id_number' => 'required|unique:users,id_number',
                 'email' => 'required|email|unique:users,email',
-                'points_earned' => 'required|integer',
+                'points_earned' => 'required|integer|min:0',
             ],[
                 'name.required' => 'El campo Nombres es obligatorio.',
                 'lastname.required' => 'El campo Apellidos es obligatorio.',
 
                 'id_number.required' => 'El campo Número de Identificación es obligatorio.',
-                'id_number.numeric' => 'El campo Número de Identificación debe ser numérico.',
                 'id_number.unique' => 'El Número de Identificación ya existe en el sistema.',
 
                 'email.required' => 'El campo Correo electrónico es obligatorio.',
@@ -50,7 +49,7 @@ class UserController extends Controller
                 'points_earned'=>$fields['points_earned']
             ]);
             DB::commit();
-            return response()->json($user,200);
+            return response()->json(['user' => $user],200);
         }catch (\Exception $e){
             DB::rollBack();
             return response()->json($e->errors(),500);
@@ -63,8 +62,8 @@ class UserController extends Controller
             $fields=$request->validate([
                 'name' => 'required',
                 'lastname' => 'required',
-                'email' => 'required|email|unique:users,email',
-                'points_earned' => 'required|integer',
+                'email' => 'required|email|unique:users,email,' . $user->id,
+                'points_earned' => 'required|integer|min:0',
             ],[
                 'name.required' => 'El campo Nombres es obligatorio.',
                 'lastname.required' => 'El campo Apellidos es obligatorio.',
@@ -86,7 +85,7 @@ class UserController extends Controller
                 'points_earned'=>$fields['points_earned']
             ]);
             DB::commit();
-            return response()->json($user,200);
+            return response()->json(['user' => $user],200);
         }catch (\Exception $e){
             DB::rollBack();
             return response()->json($e->errors(),500);
