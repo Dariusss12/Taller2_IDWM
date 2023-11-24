@@ -39,11 +39,15 @@ composer install
 php artisan key:generate
 ```
 
+```bash
+php artisan jwt:secret
+```
+
 Abrir Xampp Control Panel e iniciar Apache y MySQL dando click en el botón "start" respetando el orden.
 
 Ahora debes ir al archivo .env en la carpeta API_LARAVEL y en el apartado "DB_DATABASE=laravel" cambiar laravel por taller2_idwm y guardar los cambios con ctrl + s.
 
-Debes verificar que el puerto de MySQL coincida con "DB_PORT" en el archivo .env. 
+Debes verificar que el puerto de MySQL coincida con "DB_PORT" en el archivo .env de API_TALLER_2. 
 
 ****
 En caso de que no coincidan, debes copiar el puerto de MySQL y colocarlo en "DB_PORT".
@@ -55,10 +59,13 @@ Ir a Terminal -> New Terminal para abrir una nueva terminal.
 
 Ejecutar los siguientes comandos en orden:
 
+****
+En caso de que no exista la base de datos:
+
 ```bash
 php artisan migrate
 ```
-*****
+
 Si sale el siguiente mensaje:
 
 ```bash
@@ -66,11 +73,16 @@ Si sale el siguiente mensaje:
 
   Would you like to create it? (yes/no) [no]
 ```
-
 Debes escribir yes:
 
 ```bash
 yes
+```
+****
+En caso de que ya exista la base de datos:
+
+```bash
+php artisan migrate:fresh
 ```
 ****
 ```bash
