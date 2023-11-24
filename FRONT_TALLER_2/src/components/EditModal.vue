@@ -48,7 +48,7 @@
                     <p v-if="errors.points_earned" class="text-red-500 text-sm my-2">{{ errors.points_earned[0] }}</p>
                   </div>
                   <div class="flex justify-center w-full">
-                      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5">Guardar cambios</button>
+                      <button type="submit" class="text-white  bg-green-600 hover:bg-green-700 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5">Guardar cambios</button>
                   </div>
                 </form>
               </DialogPanel>
