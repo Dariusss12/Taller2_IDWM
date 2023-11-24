@@ -29,7 +29,7 @@
                 <form @submit.prevent="submitForm" class="mx-auto w-full">
                   <div class="mb-5">
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nombres</label>
-                    <input type="text" id="name" v-model="formData.name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" :placeholder=props.name >
+                    <input type="text" id="name" v-model="formData.name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" >
                     <p v-if="errors.name"  class="text-red-500 text-sm my-2">{{ errors.name[0] }}</p>
                   </div>
                   <div class="mb-5 ">
@@ -90,10 +90,10 @@ const props = defineProps({
 let errors = ref<FormErrors>({});
 
 const formData = ref<FormEditUser>({
-  name: '',
-  lastname: '',
-  email:'',
-  points_earned: 0,
+  name: props.name,
+  lastname: props.lastname,
+  email:props.email,
+  points_earned: props.points_earned,
 });
 
 

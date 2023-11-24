@@ -76,14 +76,14 @@ class UserController extends Controller
             $fields=$request->validate([
                 'name' => 'required',
                 'lastname' => 'required',
-                'email' => 'required|email|unique:users,email,' . $user->id,
+                'email' => 'required|regex:/^[^@]+@[^@.]+\.[^@]+$/|unique:users,email,' . $user->id,
                 'points_earned' => 'required|integer|min:0',
             ],[
                 'name.required' => 'El campo Nombres es obligatorio.',
                 'lastname.required' => 'El campo Apellidos es obligatorio.',
 
                 'email.required' => 'El campo Correo electrónico es obligatorio.',
-                'email.email' => 'El campo Correo electrónico debe ser una dirección de correo válida.',
+                'email.regex' => 'El campo Correo electrónico debe ser una dirección de correo válida.',
                 'email.unique' => 'El correo electrónico ya existe en el sistema.',
 
                 'points_earned.required' => 'El campo Puntos ganados es obligatorio.',

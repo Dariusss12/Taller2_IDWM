@@ -1,5 +1,5 @@
 <template>
-    <TransitionRoot appear :show="isOpen" as="template">
+    <TransitionRoot appear :show="isOpen" as="template" static>
       <Dialog as="div" class="relative z-[50]" @close="closeModal">
         <TransitionChild
           as="template"
