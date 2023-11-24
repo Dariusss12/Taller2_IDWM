@@ -45,22 +45,41 @@
   </template>
   
 <script setup lang="ts">
+/**
+ * Importaciones
+ */
 import { ref } from 'vue';
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel } from '@headlessui/vue';
 import { deleteUser } from '@/backend/crud';
 
+/**
+ * Se define una variable como true para el estado del modal
+ */
 const isOpen = ref<boolean>(true);
+/**
+ * Se define una función para cerrar el modal, asignando isOpen como false
+ */
 function closeModal(): void {
   isOpen.value = false;
 }
 
+/**
+ * Se definen los props que recibira el componente
+ */
 const props = defineProps({
     id: String,
     name: String,
     lastname: String
 });
 
+/**
+ * Se define una variable de mensaje
+ */
 const message = ref('')
+/**
+ * Se define una función para generar un delay
+ * @param milliseconds 
+ */
 function delayWithPromise(milliseconds: number): Promise<void> {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -69,10 +88,17 @@ function delayWithPromise(milliseconds: number): Promise<void> {
   });
 }
 
+/**
+ * Se define una función para llamar al closeModal
+ */
 async function handleNoClick(){
   closeModal();
 };
 
+/**
+ * Se define la función para enviar la id del usuario a la api para eliminarlo, obteniendo la respuesta y los errores.
+ * y mostrandolos en pantalla.
+ */
 async function deleteUserById(id: string){
     const response = await deleteUser(id);
     message.value = response.data

@@ -1,21 +1,39 @@
 <script setup lang="ts">
+/**
+ * Importaciones
+ */
 import { ref, onMounted} from 'vue';
 import { RouterView } from 'vue-router'
 import LoginModal from './components/LoginModal.vue';
 import AddModal from './components/AddModal.vue';
 import {logout} from '@/backend/crud'
 
+/**
+ * Se define las variables para mostrar los modals de Login y Añadir
+ */
 const showLoginModal = ref(false);
 const showAddModal = ref(false);
+/**
+ * Se define una variable para indicar si existe el token
+ */
 const tokenExist = ref(false);
 
+/**
+ * Funcion para abrir el modal de Login del administrador
+ */
 function openLoginModal() {
   showLoginModal.value = true;
 }
+/**
+ * Funcion para abrir el modal de añadir usuario
+ */
 function openAddModal() {
   showAddModal.value = true;
 }
 
+/**
+ * Función OnMounted para abrir el modal de Login cada vez que se ingresa a la vista.
+ */
 onMounted(async () => {
   if(localStorage.getItem('token') == null){
     showLoginModal.value = true;
@@ -27,6 +45,9 @@ onMounted(async () => {
 
 });
 
+/**
+ * Función para realizar el logout del admin eliminando el token
+ */
 async function logoutAdmin() {
   try {
     if(localStorage.getItem('token') != null){

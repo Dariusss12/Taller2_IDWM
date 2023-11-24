@@ -65,28 +65,46 @@
   </template>
   
 <script setup lang="ts">
+/**
+ * Importaciones
+ */
 import { ref } from 'vue';
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel } from '@headlessui/vue';
 import type { FormAddUser, FormErrors } from '@/interface/interfaces';
 import { addUser } from '@/backend/crud';
 
-
+/**
+ * Se define una variable como key
+ */
 const componentKey = ref(0);
 
+/**
+ * Funcion para cambiar el valor de componentKey y asì forzar el re-renderizado de los modals
+ */
 const forceRerender = () => {
   componentKey.value += 1;
 };
 
 
-
+/**
+ * Se define una variable como true para el estado del modal
+ */
 const isOpen = ref<boolean>(true);
+/**
+ * Se define una función para cerrar el modal, asignando isOpen como false
+ */
 function closeModal(): void {
   isOpen.value = false;
 }
 
-
+/**
+ * Se define una lista de errores
+ */
 let errors = ref<FormErrors>({});
 
+/**
+ * Se define un formulario.
+ */
 const formData = ref<FormAddUser>({
   name: '',
   lastname: '',
@@ -95,7 +113,9 @@ const formData = ref<FormAddUser>({
   points_earned: 0,
 });
 
-
+/**
+ * Se define la función para enviar el formulario a la api, obteniendo la respuesta y los errores.
+ */
 async function submitForm(): Promise<void> {
   errors.value = {};
   try {

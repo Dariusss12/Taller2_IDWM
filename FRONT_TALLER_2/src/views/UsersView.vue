@@ -173,28 +173,48 @@
 
 
 <script setup lang="ts">
+/**
+ * Importaciones
+ */
 import { ref, onMounted, watch } from 'vue';
 import type { User } from '../interface/interfaces';
 import {getUsers} from '../backend/crud';
 import ConfirmationModal from '@/components/ConfirmationModal.vue';
 import EditModal from '@/components/EditModal.vue';
 
+/**
+ * Se define las variables para mostrar los modals de Confirmation y Edit
+ */
 const showConfirmationModal = ref(false);
 const showEditModal = ref(false);
 
+/**
+ * Se definen variables vacias para ser enviadas como props a Confirmation y Edit modal
+ */
 let idModal = '';
 let nameModal = '';
 let lastnameModal = '';
 let emailModal = '';
 let pointsEarnedModal = 0;
 
+/**
+ * Se define una variable como key
+ */
 const componentKey = ref(0);
 
+/**
+ * Funcion para cambiar el valor de componentKey y asì forzar el re-renderizado de los modals
+ */
 const forceRerender = () => {
   componentKey.value += 1;
 };
 
-
+/**
+ * Funcion para abrir el modal de Confirmación de eliminación de usuario, mandadole cierta información
+ * @param id del usuario
+ * @param name del usuario
+ * @param lastname del usuario
+ */
 function openConfirmationModal(id: number, name:string, lastname: string) {
     showConfirmationModal.value = true;
     idModal = id.toString();
@@ -203,6 +223,14 @@ function openConfirmationModal(id: number, name:string, lastname: string) {
     forceRerender();
 }
 
+/**
+ * Funcion para abrir el modal de Editar un usuario, mandadole la información de este
+ * @param id del usuario
+ * @param name del usuario
+ * @param lastname del usuario
+ * @param email del usuario
+ * @param pointsEarned del usuario
+ */
 function openEditModal(id: number, name:string, lastname: string, email: string, pointsEarned: number) {
     showEditModal.value = true;
     idModal = id.toString();
@@ -212,11 +240,20 @@ function openEditModal(id: number, name:string, lastname: string, email: string,
     pointsEarnedModal = pointsEarned;
 }
 
+/**
+ * Se define una lista vacia de usuarios
+ */
 const users = ref<User[]>([]);
 
+/**
+ * Se define una variable para almacenar el input la busqueda
+ */
 const searchTerm = ref<string>('');
 
-// Configurar un watcher para estar atento a los cambios en searchTerm
+/**
+ * Se observa una función para cuando se actualiza el input de la busqueda
+ * y así cambiar los valores de la tabla de usuarios.
+ */
 watch(searchTerm, (newValue, oldValue) => {
   // Filtrar los usuarios según el término de búsqueda
   if (newValue === '') {
@@ -233,8 +270,14 @@ watch(searchTerm, (newValue, oldValue) => {
   }
 });
 
+/**
+ * Se define una lista de usuarios vacia para almacenar los usuarios como backup.
+ */
 let originalUsers: User[] = [];
 
+/**
+ * Función OnMounted para inicializar la vista, obteniendo los usuarios desde la api.
+ */
 onMounted(async () => {
   try {
     const response = await getUsers();
