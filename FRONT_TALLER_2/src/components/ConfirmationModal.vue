@@ -27,7 +27,7 @@
               <DialogPanel class=" w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 shadow-xl transition-all">
                 <div v-if="!message">
                     <h1 class="text-center text-3xl mb-7">¿Estás seguro que deseas eliminar el usuario {{ props.name }} {{ props.lastname }}?</h1>
-                    <img src="/img/emoji.png" class="my-5 max-h-40 mx-auto">
+                    <img src="/img/emojiGif.gif" class="my-5 max-h-40 mx-auto">
                     <div class="w-full text-center">
                         <button @click="deleteUserById(props.id || '0')" class="bg-green-500 hover:bg-green-400 py-1 mx-4 mt-7 rounded-lg text-white text-xl font-bold w-[80px]">Si</button>
                         <button @click="handleNoClick" class="bg-red-500 hover:bg-red-400 py-1 mx-4 mt-7 rounded-lg text-white text-xl font-bold w-[80px]">No</button>
