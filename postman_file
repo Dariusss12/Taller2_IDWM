@@ -41,7 +41,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzAwODM5MjEyLCJleHAiOjE3MDA4NDI4MTIsIm5iZiI6MTcwMDgzOTIxMiwianRpIjoiOWlIaXc5Z0ZWZ1lzTE9oSCIsInN1YiI6IjEiLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.n4n46jrIsO-fN6YKpxmmPpmESHpUZQdBUkQ8yh2uE2k"
+								"token": ""
 							}
 						},
 						"method": "GET",
@@ -60,7 +60,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzAwODM5MjEyLCJleHAiOjE3MDA4NDI4MTIsIm5iZiI6MTcwMDgzOTIxMiwianRpIjoiOWlIaXc5Z0ZWZ1lzTE9oSCIsInN1YiI6IjEiLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.n4n46jrIsO-fN6YKpxmmPpmESHpUZQdBUkQ8yh2uE2k"
+								"token": ""
 							}
 						},
 						"method": "POST",
@@ -84,7 +84,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzAwODM5MjEyLCJleHAiOjE3MDA4NDI4MTIsIm5iZiI6MTcwMDgzOTIxMiwianRpIjoiOWlIaXc5Z0ZWZ1lzTE9oSCIsInN1YiI6IjEiLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.n4n46jrIsO-fN6YKpxmmPpmESHpUZQdBUkQ8yh2uE2k"
+								"token": ""
 							}
 						},
 						"method": "PUT",
@@ -98,7 +98,7 @@
 								}
 							}
 						},
-						"url": "http://127.0.0.1:8000/api/users/29"
+						"url": "http://127.0.0.1:8000/api/users/19"
 					},
 					"response": []
 				},
@@ -108,12 +108,12 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzAwODM5MjEyLCJleHAiOjE3MDA4NDI4MTIsIm5iZiI6MTcwMDgzOTIxMiwianRpIjoiOWlIaXc5Z0ZWZ1lzTE9oSCIsInN1YiI6IjEiLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.n4n46jrIsO-fN6YKpxmmPpmESHpUZQdBUkQ8yh2uE2k"
+								"token": ""
 							}
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/users/28"
+						"url": "http://127.0.0.1:8000/api/users/22"
 					},
 					"response": []
 				}
