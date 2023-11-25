@@ -1,4 +1,4 @@
-# Practica 2 de Introducción al Desarrollo Web/Móvil
+# Taller 2 de Introducción al Desarrollo Web/Móvil
 
 ### Dario Contreras Abaca
 ****
